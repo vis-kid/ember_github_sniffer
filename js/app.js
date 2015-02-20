@@ -1,11 +1,19 @@
-App = Ember.Application.create();
+Github = Ember.Application.create();
 
-App.Router.map(function() {
+Github.Router.map(function() {
   // put your routes here
 });
 
-App.IndexRoute = Ember.Route.extend({
+Github.IndexRoute = Ember.Route.extend({
   model: function() {
-    return ['red', 'yellow', 'blue'];
+    return ['Yehuda', 'Tom Dale', 'Ed'];
   }
+});
+
+Github.IndexController = Ember.ArrayController.extend({
+	actions: {
+  	clickedSearchButton: function(){
+      alert("I've been clicked");
+    }
+	}
 });
