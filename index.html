@@ -20,13 +20,39 @@
 	<script type='text/x-handlebars' data-template-name='index'>
 		<p>Explore favorite devs on Github</p>
 		<ul>
-			{{#each dev in model}}
-			  <li><a href='#'>{{dev}}</a></li>
+			{{#each}}
+			  <li>{{#link-to 'user' this}}{{login}}{{/link-to}}</li>
 		  {{/each}}
 		</ul>
 		<button {{action "clickedSearchButton"}} class='search_button'>Click me!</button>
 	</script>
 
+<script type='text/x-handlebars' data-template-name='user'>
+  <p>
+    {{#link-to 'user' this}}<img {{bind-attr src=avatar_url}}>{{/link-to}}
+  </p>
+  </h4>{{#link-to 'user' this}}{{name}}{{/link-to}}</h4>
+
+  <p>
+    {{company}}</br/>
+    {{location}}</br/>
+    {{email}}</br/>
+  </p>
+  <hr/
+ 
+  <table>
+    <tr><td>User id: </td><td>{{id}}</td></tr>
+    <tr><td>Followers: </td><td>{{followers}}</td></tr>
+    <tr><td>Repos: </td><td>{{public_repos}}</td></tr>
+    <tr><td>Gists: </td><td>{{public_gists}}</td></tr>
+  </table>
+
+  <p>
+    {{#link-to 'index'}}Back{{/link-to}}
+  </p>
+
+
+</script>
 
 
   <script src="js/libs/jquery-1.10.2.js"></script>
