@@ -57,3 +57,9 @@ Github.RepositoryRoute = Ember.Route.extend({
 		return Ember.$.getJSON(url);
 	}
 });
+
+Ember.Handlebars.registerBoundHelper('fromDate', function(theDate) {
+  var today = moment();
+	var target = moment(theDate);
+	return target.from(today);
+});
