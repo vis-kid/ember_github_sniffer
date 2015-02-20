@@ -51,8 +51,27 @@
     {{#link-to 'index'}}Back{{/link-to}}
   </p>
 
-
+  <section>
+    {{ outlet }}
+  </section>
+  
 </script>
+
+  <script type='text/x-handlebars' data-template-name='user/index'>
+    <h2>{{name}}'s Github</h2>
+    <hr/>
+    <ul>
+      <li>{{#link-to 'repositories' this}}Repos{{/link-to}}</li> 
+    </ul>
+  </script>
+
+  <script type='text/x-handlebars' data-template-name='repositories'>
+    <table>
+      {{#each}}
+        <tr><td>{{name}}</td><tr>
+      {{/each}}
+    </table> 
+  </script>
 
 
   <script src="js/libs/jquery-1.10.2.js"></script>
