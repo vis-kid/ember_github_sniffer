@@ -21,7 +21,7 @@
 		<p>Explore favorite devs on Github</p>
 		<ul>
 			{{#each}}
-			  <li>{{#link-to 'user' this}}{{login}}{{/link-to}}</li>
+			  <li>{{#link-to 'user' this.login}}{{name}}{{/link-to}}</li>
 		  {{/each}}
 		</ul>
 		<button {{action "clickedSearchButton"}} class='search_button'>Click me!</button>
@@ -68,11 +68,24 @@
   <script type='text/x-handlebars' data-template-name='repositories'>
     <table>
       {{#each}}
-        <tr><td>{{name}}</td><tr>
+        <tr><td>{{#link-to 'repository' this}}{{name}}{{/link-to}}</td><tr>
       {{/each}}
     </table> 
   </script>
 
+  <script type='text/x-handlebars' data-template-name='repository'>
+    <h1>{{name}} Repo</h1>
+    <p>{{description}}</p>
+    <ul>
+      <li>Language: {{language}}</li>
+      <li>Watchers: {{watchers}}</li>
+      <li>Open Issues: {{open_issues}}</li>
+      <li>Clone: {{clone_url}}</li>
+      <li>Forks: {{forks_count}}</li>
+      <li>Web: <a {{bind-attr href='html_url'}} target=_blank>{{html_url}}</a></li>
+    </ul>
+    <hr/>
+  </script>
 
   <script src="js/libs/jquery-1.10.2.js"></script>
   <script src="js/libs/handlebars-v2.0.0.js"></script>

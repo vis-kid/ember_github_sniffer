@@ -10,6 +10,7 @@ Github = Ember.Application.create();
 Github.Router.map(function() {
 	this.resource("user", {path: "/users/:login"}, function() {
     this.resource('repositories');
+		this.resource('repository', { path: 'repositories/:reponame'});
 	});
 });
 
@@ -41,5 +42,18 @@ Github.RepositoriesRoute = Ember.Route.extend({
   model: function() {
     var user = this.modelFor('user');
 		return Ember.$.getJSON(user.repos_url);
+	}
+});
+
+Github.RepositoriesController = Ember.ArrayController.extend({
+  needs: ['user'],
+	user: Ember.computed.alias('controllers.user')
+});
+
+Github.RepositoryRoute = Ember.Route.extend({
+  model: function(){
+    var user = this.modelFor('user');
+		var url = 'https://api.github.com/repos' + user.login + '/' + params.reponame;
+		return Ember.$.getJSON(url);
 	}
 });
