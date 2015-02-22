@@ -8,60 +8,57 @@
 </head>
 <body>
 
+  <script type="text/x-handlebars" data-template-name='application'>
+    <div id="main_container">
+      <h1>Github Sniffer</h1>
+      <hr />
+      {{ outlet }}
+    </div>
+  </script>
 
-	<script type="text/x-handlebars" data-template-name='application'>
-	  <div id="main_container">
-		  <h1>Github Sniffer</h1>
-			<hr />
-			{{ outlet }}
-		</div>
-	</script>
+  <script type='text/x-handlebars' data-template-name='index'>
+    <p>Explore favorite devs on Github</p>
+    <ul>
+      {{#each}}
+        <li>{{#link-to 'user' this.login}}{{name}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+    <button {{action "clickedSearchButton"}} class='search_button'>Click me!</button>
+  </script>
 
-	<script type='text/x-handlebars' data-template-name='index'>
-		<p>Explore favorite devs on Github</p>
-		<ul>
-			{{#each}}
-			  <li>{{#link-to 'user' this.login}}{{name}}{{/link-to}}</li>
-		  {{/each}}
-		</ul>
-		<button {{action "clickedSearchButton"}} class='search_button'>Click me!</button>
-	</script>
+  <script type='text/x-handlebars' data-template-name='user'>
+    <p>
+      {{#link-to 'user' this}}<img {{bind-attr src=avatar_url}}>{{/link-to}}
+    </p>
+    </h4>{{#link-to 'user' this}}{{name}}{{/link-to}}</h4>
+    <p>
+      {{company}}</br/>
+      {{location}}</br/>
+      {{email}}</br/>
+    </p>
+		<hr/>
 
-<script type='text/x-handlebars' data-template-name='user'>
-  <p>
-    {{#link-to 'user' this}}<img {{bind-attr src=avatar_url}}>{{/link-to}}
-  </p>
-  </h4>{{#link-to 'user' this}}{{name}}{{/link-to}}</h4>
+    <table>
+      <tr><td>User id: </td><td>{{id}}</td></tr>
+      <tr><td>Followers: </td><td>{{followers}}</td></tr>
+      <tr><td>Repos: </td><td>{{public_repos}}</td></tr>
+      <tr><td>Gists: </td><td>{{public_gists}}</td></tr>
+    </table>
 
-  <p>
-    {{company}}</br/>
-    {{location}}</br/>
-    {{email}}</br/>
-  </p>
-  <hr/
- 
-  <table>
-    <tr><td>User id: </td><td>{{id}}</td></tr>
-    <tr><td>Followers: </td><td>{{followers}}</td></tr>
-    <tr><td>Repos: </td><td>{{public_repos}}</td></tr>
-    <tr><td>Gists: </td><td>{{public_gists}}</td></tr>
-  </table>
+    <p>
+      {{#link-to 'index'}}Back{{/link-to}}
+    </p>
 
-  <p>
-    {{#link-to 'index'}}Back{{/link-to}}
-  </p>
-
-  <section>
-    {{ outlet }}
-  </section>
-  
-</script>
+    <section>
+      {{ outlet }}
+    </section>
+  </script>
 
   <script type='text/x-handlebars' data-template-name='user/index'>
     <h2>{{name}}'s Github</h2>
     <hr/>
     <ul>
-      <li>{{#link-to 'repositories' this}}Repos{{/link-to}}</li> 
+      <li>{{#link-to 'repositories' this}}Repos{{/link-to}}</li>
     </ul>
   </script>
 
@@ -70,7 +67,7 @@
       {{#each}}
         <tr><td>{{#link-to 'repository' this}}{{name}}{{/link-to}}</td><tr>
       {{/each}}
-    </table> 
+    </table>
   </script>
 
   <script type='text/x-handlebars' data-template-name='repository'>
@@ -95,9 +92,6 @@
   <script src="js/app.js"></script>
   <!-- to activate the test runner, add the "?test" query string parameter -->
   <script src="tests/runner.js"></script>
-
-
-
 
 </body>
 </html>
