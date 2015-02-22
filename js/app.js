@@ -22,7 +22,7 @@ Github.IndexController = Ember.ArrayController.extend({
     clickedSearchButton: function(){
       alert("I've been clicked");
     }
-	}
+  }
 });
 
 Github.UserRoute = Ember.Route.extend({
